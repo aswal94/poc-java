@@ -31,9 +31,16 @@ public class UserController {
         return userRepository.findById(id);
     }
 
-    @PostMapping("/users/{id}")
-    public void update(@PathVariable Long id, @RequestBody User user) {
-        userRepository.findById(id);
+    @PutMapping("/users/{id}")
+    public User update(@PathVariable Long id, @RequestBody User user) {
+        return userRepository.findById(id)
+                .map(u -> {
+                    u.setFullName(user.getFullName());
+                    u.setUsername(user.getUsername());
+                    u.setPassword(user.getPassword());
+                    return userRepository.save(u);
+                })
+                .orElseGet(()-> user);
     }
 
     @DeleteMapping("/users/{id}")
