@@ -5,6 +5,7 @@ import com.zoomla.poc.respositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +13,6 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     UserRepository userRepository;
 
@@ -31,15 +31,15 @@ public class UserController {
         return userRepository.findById(id);
     }
 
-
     @PostMapping("/users/{id}")
     public void update(@PathVariable Long id, @RequestBody User user) {
         userRepository.findById(id);
     }
 
     @DeleteMapping("/users/{id}")
-    public void delete(@PathVariable Long id) {
-        return userRepository.delete(userRepository.findById(id));
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        userRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/users/search")
