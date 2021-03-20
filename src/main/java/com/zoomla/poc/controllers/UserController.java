@@ -2,8 +2,6 @@ package com.zoomla.poc.controllers;
 
 import com.zoomla.poc.models.User;
 import com.zoomla.poc.respositories.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +38,7 @@ public class UserController {
                     u.setPassword(user.getPassword());
                     return userRepository.save(u);
                 })
-                .orElseGet(()-> user);
+                .orElseGet(() -> user);
     }
 
     @DeleteMapping("/users/{id}")
