@@ -3,9 +3,8 @@ package com.zoomla.poc.controllers;
 import com.zoomla.poc.entities.Post;
 import com.zoomla.poc.respositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,9 +18,33 @@ public class PostController {
         return postRepository.findAll();
     }
 
+    @PostMapping("/posts")
+    public Post store(@RequestBody Post post) {
+        return postRepository.save(post);
+    }
+
     @GetMapping("/posts/{id}")
-    public Post show(@PathVariable Long id){
+    public Post show(@PathVariable Long id) {
         return postRepository.findById(id)
-                .orElseGet(Post::new);
+                .orElseThrow(() -> new PostNotFoundException(id));
+    }
+
+    @PutMapping("/posts/{id}")
+    public Post update(@RequestBody Post newPost, @PathVariable Long id) {
+        return postRepository.findById(id)
+                .map(post -> {
+                    post.setTitle(newPost.getTitle());
+                    post.setBody(newPost.getBody());
+                    return postRepository.save(post);
+                }).orElseGet(() -> {
+                    newPost.setId(id);
+                    return postRepository.save(newPost);
+                });
+    }
+
+    @DeleteMapping("/posts/{id")
+    public ResponseEntity<?> destroy(@PathVariable Long id) {
+        postRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
