@@ -2,6 +2,7 @@ package com.zoomla.poc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Enumeration;
 
+@Component
 public class LoggerInterceptor implements HandlerInterceptor {
     private static Logger log = LoggerFactory.getLogger(LoggerInterceptor.class);
 

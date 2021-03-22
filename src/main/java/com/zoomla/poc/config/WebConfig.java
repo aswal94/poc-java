@@ -1,5 +1,6 @@
-package com.zoomla.poc;
+package com.zoomla.poc.config;
 
+import com.zoomla.poc.LoggerInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
