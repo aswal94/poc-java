@@ -1,6 +1,7 @@
 package com.zoomla.poc.controllers;
 
 import com.zoomla.poc.entities.Post;
+import com.zoomla.poc.exceptions.PostNotFoundException;
 import com.zoomla.poc.respositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

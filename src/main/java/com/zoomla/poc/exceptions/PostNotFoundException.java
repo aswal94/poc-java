@@ -1,4 +1,4 @@
-package com.zoomla.poc.controllers;
+package com.zoomla.poc.exceptions;
 
 public class PostNotFoundException extends RuntimeException {
     public PostNotFoundException(Long id) {
