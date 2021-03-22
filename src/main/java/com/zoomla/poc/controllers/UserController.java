@@ -1,6 +1,6 @@
 package com.zoomla.poc.controllers;
 
-import com.zoomla.poc.models.User;
+import com.zoomla.poc.entities.User;
 import com.zoomla.poc.respositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package com.zoomla.poc.respositories;
 
-import com.zoomla.poc.models.User;
+import com.zoomla.poc.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

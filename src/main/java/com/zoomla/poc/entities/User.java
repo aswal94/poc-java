@@ -1,10 +1,11 @@
-package com.zoomla.poc.models;
+package com.zoomla.poc.entities;
 
 import lombok.*;
 
 import javax.persistence.*;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class User {
@@ -12,11 +13,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(name = "fullname")
     private String fullName;
+
     private String username;
     private String password;
 
-    public User(String fullName, String username, String password){
+    public User(String fullName, String username, String password) {
         this.fullName = fullName;
         this.username = username;
         this.password = password;
